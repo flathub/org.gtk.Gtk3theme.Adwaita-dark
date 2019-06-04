@@ -1,0 +1,40 @@
+{
+  "id": "org.gtk.Gtk3theme.Adwaita-dark",
+  "branch": "3.22",
+  "runtime": "org.freedesktop.Platform",
+  "sdk": "org.freedesktop.Sdk",
+  "runtime-version": "18.08",
+  "build-extension": true,
+  "appstream-compose": false,
+  "separate-locales": false,
+  "modules": [
+    {
+      "name": "gnome-themes-extra",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 themes/Adwaita-dark/gtk-3.0/gtk.css ${FLATPAK_DEST}/gtk.css"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://download.gnome.org/sources/gnome-themes-extra/3.28/gnome-themes-extra-3.28.tar.xz",
+          "sha256": "7c4ba0bff001f06d8983cfc105adaac42df1d1267a2591798a780bac557a5819"
+        }
+      ]
+    },
+    {
+      "name": "appdata",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm644 --target-directory=${FLATPAK_DEST}/share/appdata org.gtk.Gtk3theme.Adwaita-dark.appdata.xml",
+        "appstream-compose --basename=org.gtk.Gtk3theme.Adwaita-dark --prefix=${FLATPAK_DEST} --origin=flatpak org.gtk.Gtk3theme.Adwaita-dark"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "org.gtk.Gtk3theme.Adwaita-dark.appdata.xml"
+        }
+      ]
+    }
+  ]
+}
